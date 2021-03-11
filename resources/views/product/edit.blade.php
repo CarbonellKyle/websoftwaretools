@@ -50,13 +50,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Price:</strong>
-                    <input type="text" name="price" class="form-control" value="{{$product->price}}" placeholder="Price">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Date Created:</strong>
-                    <input type="text" name="created_at" class="form-control" value="{{$product->created_at}}" placeholder="Date Created">
+                    <input type="number" name="price" class="form-control" value="{{$product->price}}" placeholder="Price (in numbers)">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
