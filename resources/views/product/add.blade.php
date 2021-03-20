@@ -34,6 +34,11 @@
             {{Session::get('product_added')}}
         </div>
     @endif
+
+    @error('product')
+        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+    @enderror
+    
     <form method="POST" action="{{ route('product.addsubmit') }}">
         @csrf
         <div class="row">
@@ -45,13 +50,13 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Description:  *</strong>
+                    <strong>Description:</strong>
                     <input type="text" name="description" class="form-control" placeholder="Description">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Price:  *</strong>
+                    <strong>Price:</strong>
                     <input type="number" name="price" class="form-control" placeholder="Price (in numbers)">
                 </div>
             </div>

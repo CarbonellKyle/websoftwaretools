@@ -9,8 +9,11 @@
             <div class="pull-left">
                 <h2>Edit Product</h2>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-info" href="{{ route('product.index') }}"> Back</a>
+            <div class="d-flex">
+                <div class="pull-right">
+                    <a class="btn btn-info" href="{{ route('product.index') }}"> Back</a>
+                </div>
+                <div class="ml-5 mt-2"><p><strong>Note: </strong>Fields marked with '*' must be filled!</p></div>
             </div>
         </div>
     </div><br>
@@ -31,13 +34,18 @@
             {{Session::get('product_updated')}}
         </div>
     @endif
+    
+    @error('product')
+        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+    @enderror
+
     <form method="POST" action="{{route('product.update')}}">
         @csrf
         <input type="hidden" name="id" value="{{$product->id}}"/>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Name:</strong>
+                    <strong>Name:   *</strong>
                     <input type="text" name="name" class="form-control" value="{{$product->name}}" placeholder="Name">
                 </div>
             </div>

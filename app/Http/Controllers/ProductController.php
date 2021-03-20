@@ -30,6 +30,10 @@ class ProductController extends Controller
 
     public function addProductSubmit(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required'
+        ]);
+
         DB::table('products')->insert([
             'name' => $request->name,
             'description' => $request->description,
@@ -59,6 +63,10 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required'
+        ]);
+
         DB::table('products')->where('id', $request->id)->update([
             'name' => $request->name,
             'description' => $request->description,

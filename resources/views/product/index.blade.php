@@ -29,7 +29,7 @@
             <th class="text-center">Description</th>
             <th class="text-center">Price</th>
             <th class="text-center">Date Created</th>
-            <th class="text-center" width="250px">Action<th>
+            <th class="text-center" width="250px">Action</th>
         </tr>
         @foreach ($products as $product)
         <tr>
