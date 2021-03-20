@@ -21,7 +21,7 @@
         <style>
         body {
             overflow-x: hidden;
-            font-family: 'Nunito';
+            font-family: 'Times';
         }
         #menu-toggle:hover{
             background-color: #EF3B2D;
