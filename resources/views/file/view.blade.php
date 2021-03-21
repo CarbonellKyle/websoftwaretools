@@ -27,7 +27,7 @@
                 @endif
 
                 <div class="d-flex">
-                    <div><img style="height: auto; width: 150px;" src="{{ asset($filepath) }}"/></div>
+                    <div><img style="height: auto; width: 150px;" src="{{ url($filepath) }}"/></div>
                     <div class="ml-2 mt-1">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">

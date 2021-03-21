@@ -45,7 +45,8 @@ class FileController extends Controller
             'filetype' => $filetype
         ]);
 
-        $request->file('file')->storeAs('public/files', $fileOriginalName);
+        //Storage::disk('public')->put('filename', $fileOriginalName);
+        $request->file('file')->storeAs('/files', $fileOriginalName, 'uploads');
         return back()->with('file_uploaded', 'File has been uploaded successfully!');
     }
 
@@ -62,12 +63,12 @@ class FileController extends Controller
 
         //if file is not an image
         if(! in_array($file->filetype, $image)){
-            $filepath = "storage/files/docThumnail.jpg";
+            $filepath = "../../img/docThumnail.jpg";
             return view('file.view', compact('file', 'filepath'));
         }
         
         //images as default file
-        $filepath = "storage/files/" . $fileOriginalName;
+        $filepath = "uploads/files/" . $fileOriginalName;
         return view('file.view', compact('file', 'filepath'));
     }
 
@@ -76,7 +77,7 @@ class FileController extends Controller
         $file = DB::table('files')->where('id', $id)->first();
         $filename = $file->filename;
         $fileOriginalName = $filename . '.' . $file->filetype;
-        Storage::disk('public')->delete('files/' . $fileOriginalName);
+        Storage::disk('uploads')->delete('files/' . $fileOriginalName);
 
         DB::table('files')->where('id', $id)->delete();
         return back()->with('delete_file', 'File has been deleted!');
@@ -95,12 +96,12 @@ class FileController extends Controller
  
          //if file is not an image
          if(! in_array($file->filetype, $image)){
-             $filepath = "storage/files/docThumnail.jpg";
+             $filepath = "../../img/docThumnail.jpg";
              return view('file.edit', compact('file', 'filepath'));
          }
          
          //images  as default file
-         $filepath = "storage/files/" . $fileOriginalName;
+         $filepath = "uploads/files/" . $fileOriginalName;
          return view('file.edit', compact('file', 'filepath'));
     }
 
@@ -115,7 +116,7 @@ class FileController extends Controller
         $old_name = $file->filename . '.' . $file->filetype;
         $new_name = $request->filename. '.' . $file->filetype;
 
-        Storage::move('public/files/' . $old_name, 'public/files/' . $new_name);
+        Storage::disk('uploads')->move('files/' . $old_name, 'files/' . $new_name);
 
         //rename on database
         DB::table('files')->where('id', $request->id)->update([
