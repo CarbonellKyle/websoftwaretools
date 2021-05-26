@@ -1,22 +1,11 @@
-@extends('layouts.template')
+@extends('layouts.form')
 
 @section('content')
 <div class="container-fluid">
-    <h1 class="mt-4 text-center" style="color: #EF3B2D;" ><strong>CRUD</strong></h1>
-
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Add New Product</h2>
-            </div>
-            <div class="d-flex">
-                <div class="pull-right">
-                    <a class="btn btn-info" href="{{ route('product.index') }}"> Back</a>
-                </div>
-                <div class="ml-5 mt-2"><p><strong>Note: </strong>Fields marked with '*' must be filled!</p></div>
-            </div>
-        </div>
-    </div><br>
+    <div class="pull-right">
+        <a class="btn btn-danger" href="{{ route('product.index') }}"> Back</a>
+    </div>
+    <h2 class="mt-4 text-center"><strong>Add Products</strong></h2><br>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -39,32 +28,27 @@
         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
     @enderror
     
-    <form method="POST" action="{{ route('product.addsubmit') }}">
+    <form method="POST" action="{{ route('product.addsubmit') }}" class="form w-100" novalidate="novalidate">
         @csrf
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Name:  *</strong>
-                    <input type="text" name="name" class="form-control" placeholder="Name">
-                </div>
+            <div class="fv-row mb-7">
+                <label for="name" class="form-label fw-bolder text-dark fs-6">{{ __('Name') }}</label>
+                <input type="text" name="name" class="form-control form-control-lg form-control-solid" placeholder="Name">
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Description:</strong>
-                    <input type="text" name="description" class="form-control" placeholder="Description">
-                </div>
+            <div class="fv-row mb-7">
+                <label for="description" class="form-label fw-bolder text-dark fs-6">{{ __('Description') }}</label>
+                <input type="text" name="description" class="form-control form-control-lg form-control-solid" placeholder="Description">
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Price:</strong>
-                    <input type="number" name="price" class="form-control" placeholder="Price (in numbers)">
-                </div>
+            <div class="fv-row mb-7">
+                <label for="price" class="form-label fw-bolder text-dark fs-6">{{ __('Price') }}</label>
+                <input type="number" name="price" class="form-control form-control-lg form-control-solid" placeholder="Price (in numbers)">
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-success">Add</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-lg btn-primary">
+                    <span class="indicator-label">{{ __('Add') }}</span>
+                    <span class="indicator-progress">Please wait...
+					<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                </button>
             </div>
-        </div>
     </form>
-
 </div>
 @endsection
